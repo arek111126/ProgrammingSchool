@@ -42,7 +42,7 @@ public class SolutionDao {
 
     }
 
-    List<Solution> findAll(){
+   public List<Solution> findAll(){
         List<Solution> solutions = new ArrayList<>();
 
         final Connection connection;
@@ -61,7 +61,7 @@ public class SolutionDao {
 
     }
 
-    Solution read(int solutionId) {
+   public Solution read(int solutionId) {
         try {
 
             final Connection connection = SqlConnection.getConnection();
@@ -92,7 +92,7 @@ public class SolutionDao {
         }
         return null;
     }
-    void update(Solution solution){
+   public void update(Solution solution){
         final Connection connection;
         try {
             connection = SqlConnection.getConnection();
@@ -147,7 +147,7 @@ public class SolutionDao {
         }
         return solutions;
     }
-    List<Solution> findAllByUserId(int userId) {
+    public List<Solution> findAllByUserId(int userId) {
         final Connection connection;
         List<User> users = new ArrayList<>();
         try {
@@ -164,7 +164,7 @@ public class SolutionDao {
 
 
     }
-    List<Solution> findAllByExerciseId(int exerciseId) {
+    public List<Solution> findAllByExerciseId(int exerciseId) {
         final Connection connection;
         List<User> users = new ArrayList<>();
         try {

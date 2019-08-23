@@ -1,4 +1,4 @@
-package pl.programmingschool;
+package pl.programmingschool.service.operations;
 
 import pl.programmingschool.model.User;
 import pl.programmingschool.dao.UserDao;
@@ -6,20 +6,20 @@ import pl.programmingschool.dao.UserDao;
 import java.util.Scanner;
 
 
-public class AdministrationConsoleUser {
+public class UserOperations {
 
-    public static UserDao userDao;
+    public  UserDao userDao;
 
 
 
-    private static void delete(Scanner scanner) {
-        System.out.println("Podaj id usera do usuniecia");
+    public  void delete(Scanner scanner) {
+        System.out.println("Give userId to delete");
         final int id = scanner.nextInt();
 
         userDao.delete(new User(id, "", "", "", 1));
     }
 
-    private static void edit(Scanner scanner) {
+    public  void edit(Scanner scanner) {
         System.out.println("Add user name");
         final String name = scanner.nextLine();
         System.out.println("Add email");
@@ -34,7 +34,7 @@ public class AdministrationConsoleUser {
         userDao.update(user);
     }
 
-    private static void add(Scanner scanner) {
+    public  void add(Scanner scanner) {
         System.out.println("Add user name");
         final String name = scanner.nextLine();
         System.out.println("Add email");
@@ -47,30 +47,6 @@ public class AdministrationConsoleUser {
 
     }
 
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        /*add ,edi,delete,quit */
-
-        String commandEnteredByAdmin = "";
-        commandEnteredByAdmin = scanner.nextLine();
-        while (!commandEnteredByAdmin.equals(Commands.QUIT_COMMAND)) {
-
-            if (commandEnteredByAdmin.equals(Commands.ADD_COMMAND)) {
-                AdministrationConsoleUser.add(scanner);
-            } else if (commandEnteredByAdmin.equals(Commands.EDIT_COMMAND)) {
-                AdministrationConsoleUser.edit(scanner);
-            } else if (commandEnteredByAdmin.equals(Commands.DELETE_COMMAND)) {
-                AdministrationConsoleUser.delete(scanner);
-            } else {
-                System.out.println("Unknown command: " + commandEnteredByAdmin);
-            }
-            System.out.println("Co dalej chcesz zrobić?");
-            commandEnteredByAdmin = scanner.nextLine();
-
-
-        }
-    }
 
 
 }

@@ -15,7 +15,7 @@ public class ExerciseDao {
     private static final String SELECT_STRING = "SELECT title,description FROM exercises";
     private static final String UPDATE_STRING = "UPDATE exercises SET  title = ?,description = ?   WHERE id= ?";
 
-    public static Exercise create(Exercise exercise) {
+    public Exercise create(Exercise exercise) {
 
         try {
             final Connection connection = SqlConnection.getConnection();
@@ -35,14 +35,13 @@ public class ExerciseDao {
         }
     }
 
-    public static  List<Exercise> findAll() {
-        List<Exercise> exercises = new ArrayList<>();
+    public List<Exercise> findAll() {
 
         final Connection connection;
         try {
             connection = SqlConnection.getConnection();
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT title,description FROM exercises");
+            ResultSet resultSet = statement.executeQuery("SELECT id,title,description FROM exercises");
             return ResulTSetToUserList(resultSet);
 
         } catch (SQLException e) {
@@ -53,11 +52,12 @@ public class ExerciseDao {
 
     }
 
-    private static List<Exercise> ResulTSetToUserList(ResultSet resultSet) {
+    private List<Exercise> ResulTSetToUserList(ResultSet resultSet) {
         List<Exercise> exercises = new ArrayList<>();
         while (true) {
             try {
                 if (!resultSet.next()) break;
+
                 final int id = resultSet.getInt("id");
                 final String title = resultSet.getString("title");
                 final String description = resultSet.getString("description");
@@ -73,7 +73,7 @@ public class ExerciseDao {
         return exercises;
     }
 
-    public static int delete(Exercise exercise) {
+    public int delete(Exercise exercise) {
         final Connection connection;
         try {
             connection = SqlConnection.getConnection();
@@ -87,7 +87,7 @@ public class ExerciseDao {
 
     }
 
-   public static Exercise read(int exerciseId) {
+    public Exercise read(int exerciseId) {
         try {
 
             final Connection connection = SqlConnection.getConnection();
@@ -113,7 +113,7 @@ public class ExerciseDao {
         return null;
     }
 
-   public static void update(Exercise exercise) {
+    public void update(Exercise exercise) {
         final Connection connection;
         try {
             connection = SqlConnection.getConnection();

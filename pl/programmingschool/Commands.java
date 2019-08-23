@@ -1,9 +1,9 @@
 package pl.programmingschool;
 
 public class Commands {
-    final static String QUIT_COMMAND = "quit";
-    final static String ADD_COMMAND = "add";
-    final static String EDIT_COMMAND = "edit";
-    final static String DELETE_COMMAND = "delete";
-    final static String VIEW_COMMAND = "view";
+    public final static String QUIT_COMMAND = "quit";
+    public final static String ADD_COMMAND = "add";
+    public final static String EDIT_COMMAND = "edit";
+    public final static String DELETE_COMMAND = "delete";
+    public final static String VIEW_COMMAND = "view";
 }

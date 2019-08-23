@@ -39,7 +39,7 @@ public class GroupsDao {
             try {
                 connection = SqlConnection.getConnection();
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT name FROM groups");
+                ResultSet resultSet = statement.executeQuery("SELECT id,name FROM groups");
                 return ResulTSetToUserList(resultSet);
 
             } catch (SQLException e) {

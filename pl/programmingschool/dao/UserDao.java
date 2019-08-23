@@ -14,7 +14,7 @@ public  class UserDao {
     private static final String UPDATE_STRING = "UPDATE users SET email= ?,username = ?,password = ?,group_id = ?  WHERE id= ?";
     private static final String DELETE_STRING = "DELETE FROM users WHERE id =?";
 
-    public static User create(User user) {
+    public  User create(User user) {
         try {
             final Connection connection = SqlConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_STRING, Statement.RETURN_GENERATED_KEYS);
@@ -37,8 +37,7 @@ public  class UserDao {
 
     }
 
-    public static List<User> findAll() {
-        List<User> users = new ArrayList<>();
+    public  List<User> findAll() {
 
         final Connection connection;
         try {
@@ -55,7 +54,7 @@ public  class UserDao {
 
     }
 
-   public static  User read(int userId) {
+   public   User read(int userId) {
         try {
 
             final Connection connection = SqlConnection.getConnection();
@@ -134,7 +133,7 @@ public  class UserDao {
 
     }
 
-    private static List<User> ResulTSetToUserList(ResultSet resultSet) {
+    private  List<User> ResulTSetToUserList(ResultSet resultSet) {
         List<User> users = new ArrayList<>();
         while (true) {
             try {
