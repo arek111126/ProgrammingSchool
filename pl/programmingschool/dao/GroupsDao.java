@@ -14,7 +14,7 @@ public class GroupsDao {
     private static final String SELECT_STRING = "SELECT id, name FROM groups";
     private static final String UPDATE_STRING = "UPDATE groups SET  name = ?  WHERE id= ?";
 
-    public Group create(Group groups) {
+    public static Group create(Group groups) {
 
         try {
             final Connection connection = SqlConnection.getConnection();
@@ -70,7 +70,7 @@ public class GroupsDao {
         }
         return groups;
     }
-    int  delete(Group groups){
+    public static int  delete(Group groups){
         final Connection connection;
         try {
             connection = SqlConnection.getConnection();
@@ -83,7 +83,7 @@ public class GroupsDao {
         }
 
     }
-    Group read(int groupId) {
+    public static Group  read(int groupId) {
         try {
 
             final Connection connection = SqlConnection.getConnection();
@@ -107,7 +107,7 @@ public class GroupsDao {
         }
         return null;
     }
-    void update(Group groups){
+    public static  void  update(Group groups){
         final Connection connection;
         try {
             connection = SqlConnection.getConnection();

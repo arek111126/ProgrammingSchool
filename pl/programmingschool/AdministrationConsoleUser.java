@@ -5,23 +5,21 @@ import pl.programmingschool.dao.UserDao;
 
 import java.util.Scanner;
 
+
 public class AdministrationConsoleUser {
 
-    static UserDao userDao;
+    public static UserDao userDao;
 
-    final static String QUIT_COMMAND = "quit";
-    final static  String ADD_COMMAND = "add";
-    final static String EDIT_COMMAND = "edit";
-    final static  String DELETE_COMMAND = "delete";
 
-    private static void deleteUserById(Scanner scanner) {
+
+    private static void delete(Scanner scanner) {
         System.out.println("Podaj id usera do usuniecia");
         final int id = scanner.nextInt();
 
         userDao.delete(new User(id, "", "", "", 1));
     }
 
-    private static void editExistingUser(Scanner scanner) {
+    private static void edit(Scanner scanner) {
         System.out.println("Add user name");
         final String name = scanner.nextLine();
         System.out.println("Add email");
@@ -36,7 +34,7 @@ public class AdministrationConsoleUser {
         userDao.update(user);
     }
 
-    private static void  addNewUser(Scanner scanner) {
+    private static void add(Scanner scanner) {
         System.out.println("Add user name");
         final String name = scanner.nextLine();
         System.out.println("Add email");
@@ -56,14 +54,14 @@ public class AdministrationConsoleUser {
 
         String commandEnteredByAdmin = "";
         commandEnteredByAdmin = scanner.nextLine();
-        while (!commandEnteredByAdmin.equals(QUIT_COMMAND)) {
+        while (!commandEnteredByAdmin.equals(Commands.QUIT_COMMAND)) {
 
-            if (commandEnteredByAdmin.equals(ADD_COMMAND)) {
-                addNewUser(scanner);
-            } else if (commandEnteredByAdmin.equals(EDIT_COMMAND)) {
-                editExistingUser(scanner);
-            } else if (commandEnteredByAdmin.equals(DELETE_COMMAND)) {
-                deleteUserById(scanner);
+            if (commandEnteredByAdmin.equals(Commands.ADD_COMMAND)) {
+                AdministrationConsoleUser.add(scanner);
+            } else if (commandEnteredByAdmin.equals(Commands.EDIT_COMMAND)) {
+                AdministrationConsoleUser.edit(scanner);
+            } else if (commandEnteredByAdmin.equals(Commands.DELETE_COMMAND)) {
+                AdministrationConsoleUser.delete(scanner);
             } else {
                 System.out.println("Unknown command: " + commandEnteredByAdmin);
             }

@@ -1,14 +1,16 @@
 package pl.programmingschool;
 
 import pl.programmingschool.dao.ExerciseDao;
+import pl.programmingschool.dao.GroupsDao;
 import pl.programmingschool.model.Exercise;
+import pl.programmingschool.model.Group;
 
 import java.util.Scanner;
 
 import static pl.programmingschool.AdministrationConsoleUser.*;
 
 
-public class AdministrationConsoleExercise {
+public class AdministrationConsoleEGroup {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -17,11 +19,11 @@ public class AdministrationConsoleExercise {
         while (!commandEnteredByAdmin.equals(Commands.QUIT_COMMAND)) {
             commandEnteredByAdmin = scanner.nextLine();
             if (commandEnteredByAdmin.equals(Commands.ADD_COMMAND)) {
-                AdministrationConsoleExercise.add(scanner);
+                AdministrationConsoleEGroup.add(scanner);
             } else if (commandEnteredByAdmin.equals(Commands.EDIT_COMMAND)) {
-                AdministrationConsoleExercise.edit(scanner);
+                AdministrationConsoleEGroup.edit(scanner);
             } else if (commandEnteredByAdmin.equals(Commands.DELETE_COMMAND)) {
-                AdministrationConsoleExercise.delete(scanner);
+                AdministrationConsoleEGroup.delete(scanner);
             } else {
                 System.out.println("Unknown command: " + commandEnteredByAdmin);
             }
@@ -32,30 +34,26 @@ public class AdministrationConsoleExercise {
     }
 
     public static void add(Scanner scanner) {
-        System.out.println("Add exercise title");
-        final String title = scanner.nextLine();
-        System.out.println("Add exercise description");
-        final String description = scanner.nextLine();
-        ExerciseDao.create(new Exercise(title, description));
+        System.out.println("Add group name");
+        final String name = scanner.nextLine();
+
+        GroupsDao.create(new Group(name));
     }
 
     public static void edit(Scanner scanner) {
-        System.out.println("Add exercse title");
+        System.out.println("Add  new changed group title");
         final String title = scanner.nextLine();
-        System.out.println("Add exercise description");
-        final String description = scanner.nextLine();
-        System.out.println("Add exercise id");
-        final int id = scanner.nextInt();
-        Exercise exercise = new Exercise(id, title, description);
 
-        ExerciseDao.update(exercise);
+        Group group = new Group(title);
+
+        GroupsDao.update(group);
     }
 
     private static void delete(Scanner scanner) {
-        System.out.println("Get id exercise to delete");
+        System.out.println("Get id groups to delete");
         final int id = scanner.nextInt();
 
-        ExerciseDao.delete(new Exercise(id, "", ""));
+        GroupsDao.delete(new Group(id, ""));
     }
 
 }

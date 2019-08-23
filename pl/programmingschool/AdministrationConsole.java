@@ -1,26 +1,24 @@
 package pl.programmingschool;
 
 import jdk.nashorn.internal.ir.WhileNode;
+import pl.programmingschool.dao.UserDao;
+import pl.programmingschool.model.User;
 
 import java.util.Scanner;
 
 public class AdministrationConsole {
-    public static final String QUIT_COMMAND = "add";
-    private static final String ADD_COMMAND = "add";
-    private static final String EDIT_COMMAND = "edit";
-    private static final String DELETE_COMMAND = "delete";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         /*add ,edi,delete,quit */
         String commandEnteredByAdmin = "";
 
-        while (!commandEnteredByAdmin.equals(QUIT_COMMAND)) {
-            if (commandEnteredByAdmin.equals(ADD_COMMAND)) {
+        while (!commandEnteredByAdmin.equals(Commands.QUIT_COMMAND)) {
+            if (commandEnteredByAdmin.equals(Commands.ADD_COMMAND)) {
                 addNewUser(scanner);
-            } else if (commandEnteredByAdmin.equals(EDIT_COMMAND)) {
+            } else if (commandEnteredByAdmin.equals(Commands.EDIT_COMMAND)) {
                 editExistingUser();
-            } else if (commandEnteredByAdmin.equals(DELETE_COMMAND)) {
+            } else if (commandEnteredByAdmin.equals(Commands.DELETE_COMMAND)) {
                 deleteUserById();
             } else {
                 System.out.println("Unknown command: " + commandEnteredByAdmin);
@@ -44,7 +42,9 @@ public class AdministrationConsole {
         final String email = scanner.nextLine();
         System.out.println("Add password");
         final String password = scanner.nextLine();
-        final User user = new UserDao().create(new User(email, name, password));
+        System.out.println("Add group");
+        final int groupId = scanner.nextInt();
+        final User user = new UserDao().create(new User(email, name, password,groupId));
         System.out.println("Created user with id: " + user.getId());
     }
 

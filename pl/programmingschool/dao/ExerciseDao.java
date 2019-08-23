@@ -73,7 +73,7 @@ public class ExerciseDao {
         return exercises;
     }
 
-    int delete(Exercise exercise) {
+    public static int delete(Exercise exercise) {
         final Connection connection;
         try {
             connection = SqlConnection.getConnection();
